@@ -63,6 +63,39 @@ report_d.Properties.RowNames={'Constant' 'Log Wage', 'Age/10', 'Age^2/10', ...
 disp(report_d);
 writetable(report_d, 'report_d.csv','WriteRowNames',true)
 
+% Excises e)
+% Gradient and Hessian
+g = Gradp(@ll_poisson, beta, Y, X, false);
+H = HessMp(@ll_poisson, beta, Y, X, true);
+
+% Excises f)
+cv_1 = inv(H);                   % Inverse of the Hessian 
+cv_2 = inv(g'*g);                % Inverse of the OPG
+cv_3 = inv(H) *  g'*g * inv(H);  % Sandwich estimator
+
+se_1 = diag(cv_1).^0.5;
+se_2 = diag(cv_2).^0.5;
+se_3 = diag(cv_3).^0.5;
+
+t_1 = beta ./ se_1;
+t_2 = beta ./ se_2;
+t_3 = beta ./ se_3;
+
+disp('Covariance Matrix (Hessian)');
+disp(cv_1);
+disp('Covariance Matrix (Gradient)');
+disp(cv_2);
+disp('Covariance Matrix (Sandwitch)');
+disp(cv_3);
+
+disp('T Values (Hessian)')
+disp(t_1);
+disp('T Values (Gradient)')
+disp(t_2);
+disp('T Values (Sandwitch)')
+disp(t_3);
+
+
 
 
 
