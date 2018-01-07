@@ -21,11 +21,11 @@ function result = regress(X, Y)
     % Corresponding p-values
     p_value = 2 * (1 - normcdf(abs(t_stat)));
    
-    coeffients = b';
+    coeffients = b;
     %return the results
-    t_statistics = t_stat';
-    sterr=s';
-    p_values=p_value';
+    t_statistics = t_stat;
+    sterr=s;
+    p_values=p_value;
     result=table(coeffients, sterr, t_statistics, p_values);
 
 end
