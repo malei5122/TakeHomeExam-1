@@ -89,14 +89,19 @@ disp('Covariance Matrix (Sandwitch)');
 disp(cv_3);
 
 disp('T Values (Hessian)')
-disp(t_1);
+disp(t_1');
 disp('T Values (Gradient)')
-disp(t_2);
+disp(t_2');
 disp('T Values (Sandwitch)')
-disp(t_3);
+disp(t_3');
 
+% Exercise i)
 
-
-
-
-
+% APE
+APE = mean(exp(X*beta)*beta(3,:));
+disp('APE');
+disp(APE)
+% PEA
+PEA = exp(mean(X) * beta) *beta(3,:);
+disp('PEA');
+disp(PEA)
